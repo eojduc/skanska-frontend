@@ -17,9 +17,7 @@ const Modes = ({ mode, isAdmin }) => {
     )
   } else if (mode === 'form') {
     return (
-      <div className="u-custom-html-1">
-        <Form />
-      </div>
+      <Form />
     )
   } else {
     return (<h1>error</h1>)
