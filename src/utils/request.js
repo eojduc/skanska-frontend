@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const url = 'https://shrouded-thicket-81070.herokuapp.com/';
+const url = 'https://shrouded-thicket-81070.herokuapp.com';
 
 
 const get = () => {
