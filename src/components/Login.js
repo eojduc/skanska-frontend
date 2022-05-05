@@ -1,6 +1,7 @@
 import Popup from "reactjs-popup";
 import { useState } from "react";
 import axios from "axios";
+import db from "../utils/request";
 
 const Login = ({ setAdmin }) => {
   const [username, setUsername] = useState("");
@@ -8,7 +9,7 @@ const Login = ({ setAdmin }) => {
   const [open, setOpen] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/login', {username: username, password: password})
+    axios.post(`${db.url}/login`, {username: username, password: password})
       .then(res => {
         if (res.data === 'valid') setAdmin(true);
         else {
