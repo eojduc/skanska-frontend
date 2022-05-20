@@ -9,7 +9,7 @@ const Login = ({ setAdmin }) => {
   const [open, setOpen] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`${db.url}/login`, {username: username, password: password})
+    db.post('login', {username: username, password: password})
       .then(res => {
         if (res.data === 'valid') setAdmin(true);
         else {
@@ -27,6 +27,7 @@ const Login = ({ setAdmin }) => {
       modal
       nested
       open={open}
+      onClose={() => setOpen(false)}
       >
         <div className="modal">
           <button className="close" onClick={() => setOpen(false)} >

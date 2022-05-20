@@ -1,10 +1,27 @@
-import { useState } from 'react';
+import {useEffect} from 'react';
 
 const Delivery = ( {delivery, editMode, setDelivery} ) => {
+  useEffect(() => {
+    const start = new Date(delivery.start);
+    const end = new Date(delivery.end);
+    start.setHours(start.getHours()-4);
+    end.setHours(end.getHours()-4);
+    setDelivery({
+      ...delivery,
+      start: start.toISOString().substring(0, 23),
+      end: end.toISOString().substring(0, 23),
+    });
+  }, [editMode]);
   const dateFormat = (date) => {
     const d = new Date(date);
     if (d.toString() === 'Invalid Date') return null;
     return d.toLocaleString('en-US', {dateStyle: 'medium', timeStyle: 'short'});
+  }
+  const handleChange = (field, value) => {
+    setDelivery({
+      ...delivery,
+      [field]: value,
+    });
   }
   if (!editMode) {
     return (
@@ -25,40 +42,28 @@ const Delivery = ( {delivery, editMode, setDelivery} ) => {
         Extra Notes: {delivery.notes || 'N/A'}<br/>
       </div>
     );
-  }
-  else {
+  } else {
     return (
       <div>
-        Start: <Input field='start' type='datetime-local' delivery={delivery} setDelivery={setDelivery} /><br/>
-        End: <Input field='end' type='datetime-local' delivery={delivery} setDelivery={setDelivery} /><br/>
-        Company: <Input field='company' type='text' delivery={delivery} setDelivery={setDelivery} /><br/>
-        Description: <Input field='description' type='text' delivery={delivery} setDelivery={setDelivery} /><br/>
-        Gate: <Input field='gate' type='number' delivery={delivery} setDelivery={setDelivery} /><br/>
-        Contact Name: <Input field='contactName' type='text' delivery={delivery} setDelivery={setDelivery} /><br/>
-        Contact Number: <Input field='contactNumber' type='tel' delivery={delivery} setDelivery={setDelivery} /><br/>
-        Location: <Input field='location' type='text' delivery={delivery} setDelivery={setDelivery} /><br/>
-        Scheduler Name: <Input field='schedName' type='text' delivery={delivery} setDelivery={setDelivery} /><br/>
-        Scheduler Number: <Input field='schedNumber' type='tel' delivery={delivery} setDelivery={setDelivery} /><br/>
-        Supplier: <Input field='supplier' type='text' delivery={delivery} setDelivery={setDelivery} /><br/>
-        Hoist Method: <Input field='hoistMethod' type='text' delivery={delivery} setDelivery={setDelivery} /><br/>
-        Number of Trucks: <Input field='trucks' type='number' delivery={delivery} setDelivery={setDelivery} /><br/>
-        Extra Notes: <Input field='notes' type='text' delivery={delivery} setDelivery={setDelivery} /><br/>
+        Start: <input type='datetime-local' value={delivery.start} onChange={x => handleChange('start', x.target.value)} /><br/>
+        End: <input type='datetime-local' value={delivery.end} onChange={x => handleChange('end', x.target.value)} /><br/>
+        Company: <input type='text' value={delivery.company} onChange={x => handleChange('company', x.target.value)} /><br/>
+        Description: <input type='text' value={delivery.description} onChange={x => handleChange('description', x.target.value)} /><br/>
+        Gate: <input type='number' value={delivery.gate} onChange={x => handleChange('gate', x.target.value)} /><br/>
+        Contact Name: <input type='text' value={delivery.contactName} onChange={x => handleChange('contactName', x.target.value)} /><br/>
+        Contact Number: <input type='tel' value={delivery.contactNumber} onChange={x => handleChange('contactNumber', x.target.value)} /><br/>
+        Location: <input type='text' value={delivery.location} onChange={x => handleChange('location', x.target.value)} /><br/>
+        Scheduler Name: <input type='text' value={delivery.schedName} onChange={x => handleChange('schedName', x.target.value)} /><br/>
+        Scheduler Number: <input type='tel' value={delivery.schedNumber} onChange={x => handleChange('schedNumber', x.target.value)} /><br/>
+        Supplier: <input type='text' value={delivery.supplier} onChange={x => handleChange('supplier', x.target.value)} /><br/>
+        Hoist Method: <input type='text' value={delivery.hoistMethod} onChange={x => handleChange('hoistMethod', x.target.value)} /><br/>
+        Number of Trucks: <input type='number' value={delivery.trucks} onChange={x => handleChange('trucks', x.target.value)} /><br/>
+        Extra Notes: <input type='text' value={delivery.notes} onChange={x => handleChange('notes', x.target.value)} /><br/>
       </div>
       
     );
   }
 
-}
-const Input = ( { field, type, delivery, setDelivery } ) => {
-  const onChange = (data) => {
-    setDelivery({
-      ...delivery,
-      [field]: data
-    });
-  }
-  return(
-    <input type={type} value={delivery[field] || ''} placeholder='N/A' onChange={x => onChange(x.target.value)} />
-  )
 }
 
 export default Delivery;

@@ -1,9 +1,11 @@
-import {Document} from 'react-pdf';
+import { useState, useEffect } from "react";
+import db from '../utils/request'
 const Map = () => {
-
-  return (
-      <Document file='./dumy.pdf' options={{workerSrc: "pdf.worker.js"}} />
-  );  
+  const style={
+    display: 'block',
+    margin: 'auto'
+  }
+  return <img src={`${db.url}/map`} alt="Site Map" width={'100%'} style={style}/>
 }
 
 

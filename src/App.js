@@ -2,8 +2,8 @@ import { useState } from 'react';
 import Modes from './components/Modes'
 import Menu from './components/Menu'
 import Login from './components/Login';
-import './App.css'
-import './Skanska Website/nicepage.css';
+import './styles/App.css'
+import './styles/nicepage.css';
 
 const App = () => {
   const [admin, setAdmin] = useState(false);
@@ -45,7 +45,7 @@ const App = () => {
           </div>
           
           <div className="vertical body" >
-            <Menu current={mode} setCurrent={setMode} />
+            <Menu current={mode} setCurrent={setMode} isAdmin={admin}/>
             <Modes mode={mode} isAdmin={admin} />
           </div>
         </div>

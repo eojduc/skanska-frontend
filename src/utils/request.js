@@ -1,23 +1,23 @@
 import axios from 'axios';
 
 
-const url = 'https://shrouded-thicket-81070.herokuapp.com';
+const url = 'http://localhost:3001';
 
 
-const get = () => {
-  return axios.get(`${url}/delivery`);
+const get = (path) => {
+  return axios.get(`${url}/${path}`);
 }
 
-const post = (data) => {
-  return axios.post(`${url}/delivery`, {...data});
+const post = (path, data) => {
+  return axios.post(`${url}/${path}`, {...data});
 }
 
-const update = (data) => {
-  return axios.put(`${url}/delivery`, {...data});
+const update = (path, data) => {
+  return axios.put(`${url}/${path}`, {...data});
 }
 
-const remove = (id) => {
-  return axios.delete(`${url}/delivery`, {id: id});
+const remove = (path, id) => {
+  return axios.delete(`${url}/${path}`, {id: id});
 }
 
 export default { url, get, post, update, remove };

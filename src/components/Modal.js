@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import axios from 'axios';
 import Delivery from './Delivery';
 import ConfirmButton from './ConfirmButton';
 import db from '../utils/request';
 
 
-const Modal = ( {delivery, open, setOpen, canEdit} ) => {
+const Modal = ( {delivery, open, setOpen, canEdit, events, setEvents} ) => {
   const [editMode, setEditMode] = useState(false);
   const [editedDelivery, setEditedDelivery] = useState({...delivery});
   useEffect(() => setEditedDelivery({...delivery}),[delivery]);
 
   const deleteDelivery = () => {
-    db.remove(delivery.id);
+    db.remove('delivery', delivery.id);
     close();
-    window.location.reload();
+    setEvents(events.map(event => event.id === delivery.id ? null : event ));
   }
   const updateDelivery = () => {
-    db.update(editedDelivery);
+    db.update('delivery', editedDelivery);
     close();
-    window.location.reload();
+    setEvents(events.map(event => event.id === delivery.id ? editedDelivery : event ));
   }
   const close = () => {
     setOpen(false);
@@ -37,6 +36,7 @@ const Modal = ( {delivery, open, setOpen, canEdit} ) => {
     modal
     nested
     open={open}
+    onClose={close}
     >
       <div className="modal">
         <button className="close" onClick={close}>
