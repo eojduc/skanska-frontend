@@ -23,3 +23,12 @@
   text-align: center;
   position: relative;
 }
+
+#adminLogin {
+  text-decoration: underline;
+  color: #364dff;
+
+}
+#adminLogin:hover {
+  font-weight: bold;
+}
