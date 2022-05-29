@@ -22,7 +22,7 @@ const Login = ({ setAdmin }) => {
   }
   return (
     <div>
-      <button onClick={() => setOpen(true)}>admin login</button>
+      <h3 id="adminLogin" onClick={() => setOpen(true)}>Admin Login</h3>
       <Popup
       modal
       nested

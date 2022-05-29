@@ -40,8 +40,9 @@ const App = () => {
             <h3 className="u-text u-text-custom-color-1 u-text-1 title">
               {!admin && <a href="/">Delivery Scheduling Application</a>}
               {admin && <a href="/">Delivery Scheduling Application Admin</a>}
+              {!admin && <Login setAdmin={setAdmin}/>} 
+			  
             </h3>
-            {!admin && <Login setAdmin={setAdmin}/>}
           </div>
           
           <div className="vertical body" >
