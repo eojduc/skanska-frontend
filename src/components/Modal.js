@@ -12,9 +12,9 @@ const Modal = ( {delivery, open, setOpen, canEdit, events, setEvents} ) => {
   useEffect(() => setEditedDelivery({...delivery}),[delivery]);
 
   const deleteDelivery = () => {
-    db.remove('delivery', delivery.id);
+    db.post('delete', delivery);
     close();
-    setEvents(events.map(event => event.id === delivery.id ? null : event ));
+    setEvents(events.filter(event => event.id !== delivery.id));
   }
   const updateDelivery = () => {
     db.update('delivery', editedDelivery);
