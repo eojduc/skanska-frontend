@@ -22,7 +22,7 @@ const Calendar = ({ canEdit }) => {
       <DayPilotNavigator selectMode='week'
           onTimeRangeSelected={ args => setDate(args.day)}
         />
-      <DayPilotCalendar viewType="Week" startDate={date}
+      <DayPilotCalendar viewType="Week" startDate={date} headerDateFormat="M/dd"
         events={events.map(event => {
           const start = new Date(event.start);
           const end = new Date(event.end);

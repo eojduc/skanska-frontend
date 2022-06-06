@@ -32,12 +32,7 @@ const Modal = ( {delivery, open, setOpen, canEdit, events, setEvents} ) => {
 
   if (delivery === null) return null;
   return (
-    <Popup
-    modal
-    nested
-    open={open}
-    onClose={close}
-    >
+    <Popup modal nested open={open} onClose={close} >
       <div className="modal">
         <button className="close" onClick={close}>
           &times;
