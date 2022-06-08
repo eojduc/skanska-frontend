@@ -1,13 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Modes from './components/Modes'
 import Menu from './components/Menu'
 import Login from './components/Login';
+import db from './utils/request';
 import './styles/App.css'
 import './styles/nicepage.css';
 
 const App = () => {
   const [admin, setAdmin] = useState(false);
   const [mode, setMode] = useState('calendar');
+  const [number, setNumber] = useState('');
+  useEffect(() => {
+    db.get('phone').then(x => setNumber(x.data));
+  }, []);
   return (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -41,8 +46,10 @@ const App = () => {
               {!admin && <a href="/">Delivery Scheduling Application</a>}
               {admin && <a href="/">Delivery Scheduling Application Admin</a>}
               {!admin && <Login setAdmin={setAdmin}/>} 
+              {number}
 			  
             </h3>
+
           </div>
           
           <div className="vertical body" >
