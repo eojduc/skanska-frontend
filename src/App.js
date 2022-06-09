@@ -48,7 +48,7 @@ const App = () => {
               {!admin && <Login setAdmin={setAdmin}/>} 
 			  
             </h3>
-              <h3 className="u-text-custom-color-1"> Text {number} to Access Calendar. </h3>
+              <h3 className="u-text-custom-color-1"> Text 'Help' to {number} to Access Calendar. </h3>
 			  	
 
           </div>
