@@ -46,9 +46,10 @@ const App = () => {
               {!admin && <a href="/">Delivery Scheduling Application</a>}
               {admin && <a href="/">Delivery Scheduling Application Admin</a>}
               {!admin && <Login setAdmin={setAdmin}/>} 
-              {number}
 			  
             </h3>
+              <h3 className="u-text-custom-color-1"> Text {number} to Access Calendar. </h3>
+			  	
 
           </div>
           
