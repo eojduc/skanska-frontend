@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {DayPilotNavigator, DayPilotCalendar} from "@daypilot/daypilot-lite-react";
 import Modal from './Modal';
 import db from '../utils/request';
+import {SEC, MIN, HOUR, DAY} from '../utils/time'
 
 const Calendar = ({ canEdit }) => {
   const [date, setDate] = useState(new Date());
@@ -24,13 +25,11 @@ const Calendar = ({ canEdit }) => {
         />
       <DayPilotCalendar viewType="Week" startDate={date} headerDateFormat="M/dd"
         events={events.map(event => {
-          const start = new Date(event.start);
-          const end = new Date(event.end);
           return ({
             ...event,
             text: `${event.company}: ${event.description}`,
-            start: start.setHours(start.getHours() - 4),
-            end: end.setHours(end.getHours()-4),
+            start: new Date(event.start).valueOf() - 4*HOUR,
+            end: new Date(event.end).valueOf() - 4*HOUR,
           });
         })}
         onEventClick={(event) => openPopUp(event)} eventMoveHandling='Disabled'/>
