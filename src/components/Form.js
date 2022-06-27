@@ -23,6 +23,8 @@ const Form = () => {
   }
   const submitForm = (event) => {
     event.preventDefault();
+    console.log(delivery);
+    console.log(date);
     for (const field in delivery) {
       if (delivery[field] === '') delivery[field] = null;
     }
@@ -44,9 +46,10 @@ const Form = () => {
     }
     const d = {
       ...delivery,
-      start: new Date(date + ' ' + delivery.start),
-      end: new Date(date + ' ' + delivery.end)
+      start: new Date(date + 'T' + delivery.start),
+      end: new Date(date + 'T' + delivery.end)
     };
+
     db.post('delivery', d).then(() => {
       setDelivery({});
       alert('Your delivery has been saved.');
