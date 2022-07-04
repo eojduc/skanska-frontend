@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { HOUR } from '../utils/time';
 import ConfirmButton from './ConfirmButton';
 import db from '../utils/request';
+
 const EditDelivery = ({delivery, setDelivery, setEvents, setEditMode}) => {
   const dateTimeFormat = (date) => {
     return new Date(date).toISOString().replace('Z', '');

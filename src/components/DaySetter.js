@@ -28,9 +28,6 @@ const DaySetter = ({data, setData, day}) => {
       }
     })
   }
-
-  
-  
   const offOn = (value) => {
     if (data[day].active) return value;
     return '';

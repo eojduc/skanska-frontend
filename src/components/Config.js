@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import DaySetter from "./DaySetter";
 import db from '../utils/request';
 
-const Config = ({}) => {
+const Config = () => {
   const [admin, setAdmin] = useState({});
   const [workTime, setWorkTime] = useState(null);
 

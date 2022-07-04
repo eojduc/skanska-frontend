@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import db from '../utils/request'
+
 const Map = () => {
   const style={
     display: 'block',

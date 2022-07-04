@@ -1,6 +1,5 @@
 import Popup from "reactjs-popup";
 import { useState } from "react";
-import axios from "axios";
 import db from "../utils/request";
 
 const Login = ({ setAdmin }) => {

@@ -1,6 +1,7 @@
 import { HOUR } from '../utils/time';
 import db from '../utils/request';
 import ConfirmButton from './ConfirmButton';
+
 const Delivery = ( { delivery, setDelivery, setEvents, setEditMode} ) => {
   const readableDateFormat = (date) => {
     const d = new Date(date);
