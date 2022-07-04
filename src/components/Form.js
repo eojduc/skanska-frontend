@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import db from '../utils/request';
 import '../styles/form.css';
-import { toTimeString, toMinutes } from '../utils/time';
+import { toTimeString, toMilliseconds, HOUR } from '../utils/time';
 
 const Form = () => {
   const [delivery, setDelivery] = useState({});
@@ -14,7 +14,7 @@ const Form = () => {
   const handleChange = (data, field) => {
     setDelivery({
       ...delivery,
-      [field]: data
+      [field]: data,
     });
   }
   const style = {
@@ -23,10 +23,12 @@ const Form = () => {
   }
   const submitForm = (event) => {
     event.preventDefault();
+    delivery.start = toMilliseconds(delivery.start);
+    delivery.end = toMilliseconds(delivery.end);
     for (const field in delivery) {
       if (delivery[field] === '') delivery[field] = null;
     }
-    if (toMinutes(delivery.start) > toMinutes(delivery.end)) {
+    if (delivery.start > delivery.end) {
       alert('end time must be after start time');
       window.scrollTo(0, 0);
       return;
@@ -37,18 +39,15 @@ const Form = () => {
       window.scrollTo(0, 0);
       return;
     }
-    if (toMinutes(delivery.start) < times[day].start || toMinutes(delivery.end) > times[day].end) {
+    if (delivery.start < times[day].start || delivery.end > times[day].end) {
       alert(`Deliveries on ${day}s must be between ${toTimeString(times[day].start)} and ${toTimeString(times[day].end)}.`);
       window.scrollTo(0, 0);
       return;
     }
-    const d = {
-      ...delivery,
-      start: new Date(date + ' ' + delivery.start),
-      end: new Date(date + ' ' + delivery.end)
-    };
-    db.post('delivery', d).then(() => {
-      setDelivery({});
+    delivery.start = new Date(date).valueOf() + delivery.start + 4*HOUR;
+    delivery.end = new Date(date).valueOf() + delivery.end + 4*HOUR;
+    console.log(delivery);
+    db.post('delivery', delivery).then(() => {
       alert('Your delivery has been saved.');
     });
     setDelivery({});

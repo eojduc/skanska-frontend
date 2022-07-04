@@ -1,4 +1,4 @@
-import {toMinutes, toTimeString } from '../utils/time';
+import {toMilliseconds, toTimeString } from '../utils/time';
 
 const DaySetter = ({data, setData, day}) => {
   const onActiveChange = () => {
@@ -15,7 +15,7 @@ const DaySetter = ({data, setData, day}) => {
       ...data,
       [day]: {
         ...data[day],
-        start: toMinutes(start)
+        start: toMilliseconds(start)
       }
     })
   }
@@ -24,7 +24,7 @@ const DaySetter = ({data, setData, day}) => {
       ...data,
       [day]: {
         ...data[day],
-        end: toMinutes(end)
+        end: toMilliseconds(end)
       }
     })
   }

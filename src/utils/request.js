@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const url = '';
+const url = 'http://localhost:3001';
 
 
 const get = (path) => {
