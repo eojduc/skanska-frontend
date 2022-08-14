@@ -20,21 +20,9 @@ const Schedule = ({ canEdit }) => {
 
   const localizer = momentLocalizer(moment);
   return (
-    <div>
+    <div style={{height: 1000, backgroundColor: "white"}}>
       {delivery !== null && <Modal delivery={delivery} setDelivery={setDelivery} canEdit={canEdit} events={events} setEvents={setEvents}/>}
-      <DayPilotNavigator selectMode='week'
-          onTimeRangeSelected={ args => setDate(args.day)}
-        />
-      <DayPilotCalendar viewType="Week" startDate={date} headerDateFormat="M/dd"
-        events={events.map(event => {
-          return ({
-            ...event,
-            text: `${event.company}: ${event.description}`,
-            start: new Date(event.start - 4*HOUR),
-            end: new Date(event.end - 4*HOUR),
-          });
-        })}
-        onEventClick={(event) => openPopUp(event)} eventMoveHandling='Disabled'/>
+      <Calendar localizer={localizer} />
     </div>
   );
 };
