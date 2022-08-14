@@ -16,7 +16,7 @@ const Config = () => {
     e.preventDefault();
     for (const x in workTime) {
       if (workTime[x].active && workTime[x].end < workTime[x].start) {
-        alert('End times must be after start time.');
+        alert('End times must be after start times.');
         return;
       }
     }

@@ -7,10 +7,10 @@ import EditDelivery from './EditDelivery';
 
 const Modal = ( {delivery, setDelivery, canEdit, events, setEvents} ) => {
   const [editMode, setEditMode] = useState(false);
+  if (delivery == null) return null;
   const close = () => {
     setDelivery(null);
   }
-  if (delivery == null) return null;
   return (
     <Popup modal nested open onClose={close} >
       <div className="modal">

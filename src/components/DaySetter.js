@@ -35,35 +35,19 @@ const DaySetter = ({data, setData, day}) => {
   if (data === null) {
     return (
       <tr>
-        <td>
-          {day}:
-        </td>
-        <td>
-          <input type='checkbox' onChange={onActiveChange} checked={false} />
-        </td>
-        <td>
-          <input type='time' disabled={true} onChange={x => onStartChange(x.target.value)}/>
-        </td>
-        <td>
-          <input type='time' disabled={true} onChange={x => onEndChange(x.target.value)}/>
-        </td>
+        <td>{day}:</td>
+        <td><input type='checkbox' onChange={onActiveChange} checked={false} /></td>
+        <td><input type='time' disabled={true} onChange={x => onStartChange(x.target.value)}/></td>
+        <td><input type='time' disabled={true} onChange={x => onEndChange(x.target.value)}/></td>
     </tr>
     )
   }
   return (
     <tr>
-      <td>
-        {day}:
-      </td>
-      <td>
-        <input type='checkbox' onChange={onActiveChange} checked={data[day].active} />
-      </td>
-      <td>
-        <input type='time' disabled={!data[day].active} value={offOn(toTimeString(data[day].start))} onChange={x => onStartChange(x.target.value)}/>
-      </td>
-      <td>
-        <input type='time'disabled={!data[day].active} value={offOn(toTimeString(data[day].end))} onChange={x => onEndChange(x.target.value)}/>
-      </td>
+      <td>{day}:</td>
+      <td><input type='checkbox' onChange={onActiveChange} checked={data[day].active}/></td>
+      <td><input type='time' disabled={!data[day].active} value={offOn(toTimeString(data[day].start))} onChange={x => onStartChange(x.target.value)}/></td>
+      <td><input type='time'disabled={!data[day].active} value={offOn(toTimeString(data[day].end))} onChange={x => onEndChange(x.target.value)}/></td>
     </tr>
     
   )

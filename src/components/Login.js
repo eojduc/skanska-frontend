@@ -18,7 +18,6 @@ const Login = ({ setAdmin }) => {
         }
       });
     setOpen(false);
-  }
   return (
     <div>
       <h3 id="adminLogin" onClick={() => setOpen(true)}>Admin Login</h3>
@@ -37,12 +36,11 @@ const Login = ({ setAdmin }) => {
             Password: <input label="Password" type="text" value={password} onChange={x => setPassword(x.target.value)} required/>
             <input type="submit" label="login" />
           </form>
-          
         </div>
-        
       </Popup>
     </div>
   )
+  }
 }
 
 export default Login;
