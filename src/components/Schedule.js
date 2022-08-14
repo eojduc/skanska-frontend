@@ -3,6 +3,7 @@ import Modal from './Modal';
 import db from '../utils/request';
 import { HOUR } from '../utils/time'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
+import {DayPilotNavigator, DayPilotCalendar} from "@daypilot/daypilot-lite-react";
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment'
 
